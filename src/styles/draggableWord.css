@@ -1,0 +1,15 @@
+
+.draggable-word {
+  padding: 5px 8px;
+  background-color: #c5f1f2;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  user-select: none;
+  transition: transform 0.1s;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.draggable-word:active {
+  transform: scale(0.95);
+}
