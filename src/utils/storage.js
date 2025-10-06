@@ -1,7 +1,7 @@
 
 import { supabase } from './supabaseClient';
 
-const STORAGE_PREFIX = "app_audio_";
+const STORAGE_PREFIX = "coralina_";
 const USE_SUPABASE = false;
 
 const localStorageImpl = {
