@@ -24,7 +24,7 @@ function MenuPage({ allTasks, onSelectTask }) {
   }, [allTasks]);
 
   const countCorrectInTask = (task) => {
-    const prefix = `app_audio_input_correct_${task.id}_`;
+    const prefix = `coralina_input_correct_${task.id}_`;
     return correctInputsKeys.filter((key) => key.startsWith(prefix)).length;
   };
 
