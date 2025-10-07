@@ -193,6 +193,26 @@ function Task({ task, onCheck }) {
           </div>
         ))}
       </div>
+      <hr />
+
+      <div className="word-bank">
+        <div className="word-list">
+          {shuffledWords.map((word, i) => {
+            const used = isWordUsed(word);
+            return (
+              <DraggableWord
+                key={i}
+                word={word}
+                style={{
+                  visibility: used ? 'hidden' : 'visible',
+                  pointerEvents: used ? 'none' : 'auto',
+                  opacity: used ? 0.3 : 1,
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
 
       <div className="button-group">
         <button onClick={handleCheck}>Проверить</button>
