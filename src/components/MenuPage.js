@@ -36,7 +36,7 @@ function MenuPage({ allTasks, onSelectTask }) {
     <div className="menu-container">
       <BackButton />
 
-      <h1 className="menu-title">Коралина ПРАВКИ</h1>
+      <h1 className="menu-title">Коралина</h1>
 
       <ProgressBar correct={correctInputsKeys.length} total={totalInputs} />
 
