@@ -40,7 +40,7 @@ function TasksPage({ tasks, goBack }) {
         .filter(part => part.type === 'blank').length;
 
       for (let i = 0; i < blanksCount; i++) {
-        localStorage.removeItem(`app_audio_input_correct_${task.id}_${i}`);
+        localStorage.removeItem(`coralina_input_correct_${task.id}_${i}`);
       }
     });
 
