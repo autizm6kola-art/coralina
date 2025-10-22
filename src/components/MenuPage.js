@@ -3,9 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { clearAllAnswers, getAllCorrectInputs } from '../utils/storage';
 import BackButton from './BackButton';
 import ProgressBar from './ProgressBar';
+import { generateRanges } from '../utils/generateRanges';
 import '../styles/menuPage.css';
 
-function MenuPage({ allTasks, onSelectTask }) {
+// 🔧 НАСТРОЙКА: сколько заданий в одном диапазоне
+const RANGE_SIZE = 2;
+
+function MenuPage({ allTasks, onSelectRange }) {
   const [correctInputsKeys, setCorrectInputsKeys] = useState([]);
   const [totalInputs, setTotalInputs] = useState(0);
 
@@ -15,22 +19,15 @@ function MenuPage({ allTasks, onSelectTask }) {
 
     const total = allTasks.reduce((sum, task) => {
       const blanksCount = task.units
-        .flatMap(unit => unit.parts)
-        .filter(part => part.type === 'blank').length;
+        .flatMap((unit) => unit.parts)
+        .filter((part) => part.type === 'blank').length;
       return sum + blanksCount;
     }, 0);
 
     setTotalInputs(total);
   }, [allTasks]);
 
-  const countCorrectInTask = (task) => {
-    const prefix = `coralina_input_correct_${task.id}_`;
-    return correctInputsKeys.filter((key) => key.startsWith(prefix)).length;
-  };
-
-  if (!allTasks || allTasks.length === 0) {
-    return <div>Загрузка меню...</div>;
-  }
+  const ranges = generateRanges(allTasks, RANGE_SIZE); // ← используем настройку
 
   return (
     <div className="menu-container">
@@ -45,27 +42,37 @@ function MenuPage({ allTasks, onSelectTask }) {
       </p>
 
       <div className="range-buttons-wrapper">
-        {allTasks.map((task) => {
-          const totalForTask = task.units
-            .flatMap(unit => unit.parts)
-            .filter(part => part.type === 'blank').length;
+        {ranges.map((range, i) => {
+          const totalForRange = range.taskIds.reduce((sum, id) => {
+            const task = allTasks.find((t) => t.id === id);
+            if (!task) return sum;
+            const blanks = task.units
+              .flatMap((unit) => unit.parts)
+              .filter((part) => part.type === 'blank').length;
+            return sum + blanks;
+          }, 0);
 
-          const correctForTask = countCorrectInTask(task);
+          const correctForRange = range.taskIds.reduce((sum, id) => {
+            const prefix = `coralina_input_correct_${id}_`;
+            return (
+              sum + correctInputsKeys.filter((key) => key.startsWith(prefix)).length
+            );
+          }, 0);
 
           let buttonClass = 'range-button';
-          if (correctForTask === totalForTask && totalForTask > 0) {
+          if (correctForRange === totalForRange && totalForRange > 0) {
             buttonClass += ' completed';
-          } else if (correctForTask > 0) {
+          } else if (correctForRange > 0) {
             buttonClass += ' partial';
           }
 
           return (
             <button
-              key={task.id}
+              key={i}
               className={buttonClass}
-              onClick={() => onSelectTask(task.id)}
+              onClick={() => onSelectRange(range.taskIds)}
             >
-              {task.id}
+              {i + 1}
             </button>
           );
         })}

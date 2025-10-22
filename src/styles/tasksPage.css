@@ -30,8 +30,9 @@
 
 .task-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
+  grid-template-columns: 100%;
+  gap: 1px; /* немного пространства между элементами */
+  align-items: center;
   
 }
 

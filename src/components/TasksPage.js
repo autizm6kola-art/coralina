@@ -63,7 +63,7 @@ function TasksPage({ tasks, goBack }) {
         ← Назад к выбору
       </button>
 
-      <h1 className="task-heading">Страница {start}</h1>
+      {/* <h1 className="task-heading">Страница {start}</h1> */}
 
 
       <div className="task-grid">
