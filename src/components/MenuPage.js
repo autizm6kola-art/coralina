@@ -7,7 +7,7 @@ import { generateRanges } from '../utils/generateRanges';
 import '../styles/menuPage.css';
 
 // 🔧 НАСТРОЙКА: сколько заданий в одном диапазоне
-const RANGE_SIZE = 2;
+const RANGE_SIZE = 1;
 
 function MenuPage({ allTasks, onSelectRange }) {
   const [correctInputsKeys, setCorrectInputsKeys] = useState([]);
@@ -31,7 +31,8 @@ function MenuPage({ allTasks, onSelectRange }) {
 
   return (
     <div className="menu-container">
-      <BackButton />
+      
+      
 
       <h1 className="menu-title">Коралина</h1>
 
