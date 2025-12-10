@@ -11660,16 +11660,7 @@
           "parts": [
             {
               "type": "text",
-              "content": "– У-гу, – промычала "
-            },
-            {
-              "type": "blank",
-              "id": "blank-107-4-1",
-              "correct": "Коралина"
-            },
-            {
-              "type": "text",
-              "content": "."
+              "content": "– У-гу, – промычала Коралина."
             }
           ]
         }
