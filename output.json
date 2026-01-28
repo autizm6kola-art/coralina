@@ -18369,16 +18369,7 @@
             },
             {
               "type": "text",
-              "content": " "
-            },
-            {
-              "type": "blank",
-              "id": "blank-172-3-3",
-              "correct": "Коралина"
-            },
-            {
-              "type": "text",
-              "content": "."
+              "content": " Коралина."
             }
           ]
         }
