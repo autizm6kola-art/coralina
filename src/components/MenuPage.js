@@ -5,6 +5,7 @@ import BackButton from './BackButton';
 import ProgressBar from './ProgressBar';
 import { generateRanges } from '../utils/generateRanges';
 import '../styles/menuPage.css';
+import BackupControls from './BackupControls';
 
 // 🔧 НАСТРОЙКА: сколько заданий в одном диапазоне
 const RANGE_SIZE = 1;
@@ -90,6 +91,7 @@ function MenuPage({ allTasks, onSelectRange }) {
           Сбросить все ответы
         </button>
       </div>
+      <div className="reset-button-contaner"><BackupControls /></div>
     </div>
   );
 }
